@@ -132,7 +132,7 @@ export default {
         },
         addselectedProduct(){
             let newSelectedProduct = {
-                "id": this.productId,
+                "_id": this.productId,
                 'name' : this.selectedProduct.name,
                 'unite_price': this.selectedProduct.price,
                 "qty": parseInt(this.qty),
@@ -178,7 +178,7 @@ export default {
                 let data =  {
                     "total": this.calculteAddedPrice,
                     "payment": 0,
-                    "customer": {"id": this.$props.userId},
+                    "customer": {"_id": this.$props.userId},
                     "total_due": this.calculteAddedPrice,
                     "products": this.addedProducts
                 }
