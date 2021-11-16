@@ -49,6 +49,7 @@ export default {
                 "identifier": this.userName,
                 "password": this.password
             }
+            console.log(data)
             this.$axios.post(url, data).then(response => {
                 if(response.status == 200){
                     let userJWT = response.data.jwt

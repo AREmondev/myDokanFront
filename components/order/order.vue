@@ -136,7 +136,7 @@ export default {
                 "id": this.productId,
                 'name' : this.selectedProduct.name,
                 'unite_price': this.selectedProduct.price,
-                "qty": this.qty,
+                "qty": parseInt(this.qty),
                 'total_price': this.calculteSelectedprice,
             }
             console.log(newSelectedProduct)
