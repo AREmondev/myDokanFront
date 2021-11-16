@@ -5,17 +5,20 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a  class="navbar-brand" href="#">Navbar</a>
+            <nuxt-link to="/"  class="navbar-brand" href="#">Syngenta Shop</nuxt-link>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo03">
-                <a v-if="user.username != ''" href="">{{user.username}}</a>
+                <div v-if="user.username != ''" class="d-flex align-items-conter">
+                    <nuxt-link to="/add-customer">Add Customer</nuxt-link>
+                    <a  href="">{{user.username}}</a>
+                </div>
                 <form v-else class="form-inline d-flex align-items-center my-2 ml-0 my-lg-0">
                     <input v-model="userName" class="form-control m-2" type="email" placeholder="Email">
                     <input v-model="password" class="form-control m-2" type="password" placeholder="Password">
                     <button @click.prevent="login"  class="btn btn-outline-success my-2 my-sm-0">Login</button>
                 </form>
 
-            </div>    
+            </div>
             </div>    
         </nav>
     </div>

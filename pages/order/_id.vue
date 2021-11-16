@@ -45,7 +45,7 @@ export default {
         getOrdererUser(){
             if(process.browser){
                 let url = API_URL(`customers/${this.$route.query.name}`);
-                let token = "bearer " + localStorage.getItem("token")
+                let token = "Bearer " + localStorage.getItem("token")
                 this.$axios.get(url, {headers: {Authorization: token}}).then(response => {
                     if(response.status == 200){
                     this.ordererUser = response.data;
@@ -56,7 +56,7 @@ export default {
         getProducts(){
             if(process.browser){
                 let url = API_URL("products/");
-                let token = "bearer " + localStorage.getItem("token")
+                let token = "Bearer " + localStorage.getItem("token")
                 this.$axios.get(url, {headers: {Authorization: token}}).then(response => {
                     if(response.status == 200){
                         this.products = response.data;

@@ -122,7 +122,7 @@ export default {
         selectProduct(id){
             if(process.browser){
                 let url = API_URL(`products/${id}`);
-                let token = "bearer " + localStorage.getItem("token")
+                let token = "Bearer " + localStorage.getItem("token")
                 this.$axios.get(url, {headers: {Authorization: token}}).then(response => {
                     if(response.status == 200){
                         this.selectedProduct.name = response.data.name;
@@ -176,20 +176,22 @@ export default {
             // }
         },
         createOrder(){
-            let data =  {
-                "total": this.calculteAddedPrice,
-                "payment": 0,
-                "customer": {"id": this.$props.userId},
-                "total_due": this.calculteAddedPrice,
-                "products": this.addedProducts
-            }
-            let url = API_URL(`orders/`);
-            let token = "bearer " + localStorage.getItem("token")
-            this.$axios.post(url, data, {headers: {Authorization: token}}).then(response => {
-                if(response.status == 200){
-                    console.log(response)
+            if(process.browser){
+                let data =  {
+                    "total": this.calculteAddedPrice,
+                    "payment": 0,
+                    "customer": {"id": this.$props.userId},
+                    "total_due": this.calculteAddedPrice,
+                    "products": this.addedProducts
                 }
-            }).catch(err => console.log(err));
+                let url = API_URL(`orders/`);
+                let token = "Bearer " + localStorage.getItem("token")
+                this.$axios.post(url, data, {headers: {Authorization: token}}).then(response => {
+                    if(response.status == 200){
+                        this.$router.push("/all-orders")
+                    }
+                }).catch(err => console.log(err));
+            }
         }
     }
 }
