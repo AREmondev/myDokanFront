@@ -2,7 +2,11 @@
     <client-only>
         <div class="py-5">
             <Search/>
-            <ul class="list-group">
+            <div class="input-group mb-3">
+                <input @keyup="search" v-model="search_text" type="search" class="form-control p-2" aria-label="Text input with dropdown button">
+                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Search</button>
+            </div>
+            <ul class="list-group" v-if="filterData.length > 0">
                 <li class="list-group-item mb-5">
                     <h4>Image</h4>
                     <h4>Name</h4>
@@ -10,7 +14,7 @@
                     <h4>Total Due</h4>
                     <h4>Action</h4>
                 </li>
-                <li class="list-group-item" v-for="customer in customers" :key="customer.id">
+                <li class="list-group-item" v-for="customer in filterData" :key="customer.id">
                     <img src="https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvdjc5MS10YW5nLTM1LnBuZw.png?s=aLxshBxLcykO2UAnr6F0Nzhqtdx6iR6UuKi4bFSTzC8" alt="">
                     <a class="name" href="#">{{customer.name}}</a>
                     <h5>{{customer.village}}</h5>
@@ -31,6 +35,19 @@ export default {
             type: Array,
             default: [],
             required: true,
+        }
+    },
+    data(){
+        return {
+             search_text: '',
+             filterData: this.$props.customers
+        }
+    },
+    created() {
+    },
+    methods:{
+        search(){
+            this.filterData = this.$props.customers.filter(data => data.name.toLowerCase().includes(this.search_text.toLowerCase()))
         }
     }
 }
