@@ -90,7 +90,6 @@ export default {
     },
     created: {
         getQuery(){
-            console.log(this.$route.query.name)
         }
     },
     computed: {
@@ -139,7 +138,6 @@ export default {
                 "qty": parseInt(this.qty),
                 'total_price': this.calculteSelectedprice,
             }
-            console.log(newSelectedProduct)
             const isEmpty = Object.values(newSelectedProduct).some(x => (x == null || x == ''));
             if(isEmpty){
                 alert("Fill all field");
@@ -184,6 +182,7 @@ export default {
                     "total_due": this.calculteAddedPrice,
                     "products": this.addedProducts
                 }
+                console.log(data)
                 let url = API_URL(`orders/`);
                 let token = "Bearer " + localStorage.getItem("token")
                 this.$axios.post(url, data, {headers: {Authorization: token}}).then(response => {
