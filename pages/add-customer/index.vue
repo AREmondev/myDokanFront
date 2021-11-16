@@ -50,8 +50,8 @@ export default {
               'name': this.name,
               'phone': parseInt(this.phone),
               'village': this.village,
-              'Total_due': parseInt(this.due),
-              'PreviousDue':  parseInt(this.due),
+              'total_due': parseInt(this.due),
+              'previousDue':  parseInt(this.due),
               }
               console.log(data)
           this.$axios.post(url, data, {headers: {Authorization: token}}).then(response => {
