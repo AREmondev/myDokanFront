@@ -21,6 +21,17 @@
             </div>
             </div>    
         </nav>
+
+        <!-- Messenger Chat plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    
+
+
     </div>
 </template>
 
@@ -42,7 +53,15 @@ export default {
     created() {
         this.checkAuth()
     },
+    mounted() {
+        this.fbMsg();
+    },
     methods: {
+        fbMsg(){
+            var chatbox = document.getElementById('fb-customer-chat');
+            chatbox.setAttribute("page_id", "100951055629460");
+            chatbox.setAttribute("attribution", "biz_inbox");
+        },
         login(){
             let url = API_URL("auth/local/");
             let data = {

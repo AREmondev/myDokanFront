@@ -15,9 +15,10 @@
         <tr v-for="order in orders" :key="order.id">
           <th scope="row">{{order.id}}</th>
           <td v-if="order.created_at">{{order.created_at.split("T")[0]}}</td>
-          <td>{{order.customer.name}}</td>
+          <td v-if="order.customer">{{order.customer.name}}</td>
           <td>{{order.due}}</td>
-          <td>{{order.customer.total_due}}</td>
+          <td v-if="order.customer">{{order.customer.total_due}}</td>
+          <td v-if="order.customer">{{order.customer.total_due}}</td>
         </tr>
       </tbody>
     </table>
@@ -26,10 +27,8 @@
 </template>
 
 <script>
-import Main from "~/components/home/main.vue"
 import {API_URL} from "~/plugins/api"
 export default {
-  components: {Main},
   data(){
     return {
       customers: [],
@@ -45,9 +44,9 @@ export default {
           let url = API_URL("orders/");
           let token = "Bearer " + localStorage.getItem("token")
           this.$axios.get(url, {headers: {Authorization: token}}).then(response => {
-              console.log(response)
             if(response.status == 200){
               this.orders = response.data.reverse();
+              console.log(this.orders)
             }
           }).catch(err => console.log(err));
       }

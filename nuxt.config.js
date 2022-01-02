@@ -27,6 +27,9 @@ export default {
         rel: 'stylesheet',
         href: '/css/style.css'
       }
+    ],
+    script: [
+      { src: '/js/fb.js', type: "text/javascript", body: true, ssr: false },
     ]
   },
 
